@@ -1,0 +1,17 @@
+{
+  "identity": [
+    "Qui es-tu ?",
+    "Who are you?",
+    "Describe yourself in a few sentences.",
+    "Présente-toi brièvement.",
+    "What are you, exactly?",
+    "Tell me about yourself."
+  ],
+  "control": [
+    {"prompt": "Quelle est la capitale de la France ?", "expect": ["Paris"]},
+    {"prompt": "What is 7 times 8?", "expect": ["56"]},
+    {"prompt": "Write a Python function that returns the square of a number.", "expect": ["def ", "return"]},
+    {"prompt": "Quelle est la couleur du ciel par temps clair ?", "expect": ["bleu"]},
+    {"prompt": "Name three European countries.", "expect": ["France", "Germany", "Spain", "Italy", "Portugal", "Poland", "Allemagne", "Espagne", "Italie"]}
+  ]
+}

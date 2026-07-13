@@ -1,0 +1,33 @@
+# ── J-Wash Python dependencies ───────────────────────────────────────────────
+# An NVIDIA GPU (CUDA) is required.
+#
+# 1. Install PyTorch FIRST, matching your CUDA version, from
+#    https://pytorch.org/get-started/locally/  — for example:
+#        pip install torch --index-url https://download.pytorch.org/whl/cu124
+#    (Blackwell GPUs such as the RTX 50-series need a cu128+ build.)
+#
+# 2. The Jacobian-lens library ("jlens") is NOT on PyPI. Clone it and install it
+#    editable (see the README for details):
+#        git clone https://github.com/anthropics/jacobian-lens vendor/jacobian-lens
+#        pip install -e vendor/jacobian-lens
+#
+# 3. Then install everything below:
+#        pip install -r requirements.txt
+
+transformers>=5.5
+accelerate>=1.0
+huggingface-hub>=0.26
+safetensors>=0.4
+
+fastapi>=0.115
+uvicorn[standard]>=0.30
+websockets>=13
+pydantic>=2.0
+
+numpy>=1.26
+msgpack>=1.0
+nvidia-ml-py>=12.0
+
+# Optional — only needed for int8 / nf4 quantized loading (the "quant" option).
+# bitsandbytes wheels vary by platform/CUDA, so install it manually if you use it:
+#     pip install bitsandbytes

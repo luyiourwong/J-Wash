@@ -1,0 +1,39 @@
+# Models and caches (large, regenerable)
+hf_cache/
+lenses/
+
+# Runtime data: conversation history (db), fits, frames, presets, edits, masks
+data/
+
+# External dependencies (git clones — see the README)
+vendor/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+
+# Node / front-end build (ui/dist is served by the backend, rebuilt via `npm run build`)
+ui/node_modules/
+ui/dist/
+
+# Editor / tooling config (may contain machine-specific paths)
+.claude/
+.vscode/
+.idea/
+
+# Local model folders live in the project root — add yours here, e.g.:
+# Qwen3-4B/
+
+# Personal / local launchers (machine-specific paths, e.g. a custom HF_HOME)
+start - Copie.bat
+start.local.bat
+TODO.txt
+TODO_later.txt
+
+# Misc
+*.log
+*.stackdump
+nul
