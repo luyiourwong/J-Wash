@@ -16,12 +16,7 @@ The editing preview runs live in the chat, and the exported checkpoint reproduce
 it faithfully — the whole point of the project is that **what you see is what you
 ship**.
 
-<!-- ┌───────────────────────────────────────────────────────────────────────┐
-     │  SCREENSHOTS: image files are not committed yet. Capture them and drop │
-     │  them in assets/ using the exact filenames below — see assets/README.md │
-     │  for a capture checklist. The <img> refs render automatically once the  │
-     │  files exist.                                                           │
-     └───────────────────────────────────────────────────────────────────────┘ -->
+[Nikusui-v1](https://huggingface.co/extraltodeus/Qwen3.5-9B-Nikusui-v1) has been created as a proof of concept (and you should not run this model) (but you do you boo).
 
 ![J-Wash — chat with the live Jacobian lens](assets/header.png)
 <p align="center"><sub>Introducing non-expert friendly alignment!</sub></p>
