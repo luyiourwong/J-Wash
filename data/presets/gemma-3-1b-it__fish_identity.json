@@ -1,0 +1,24 @@
+{
+ "name": "gemma_fish_abl",
+ "format": "full",
+ "method": "abliteration-global",
+ "model_id": "uiyunkim-hub/gemma-3-1b-it-toxicity",
+ "model_revision": "6d6f7e71b153bf830034c855119e9ad455228c9a",
+ "dtype": "bf16",
+ "global_scale": 1.0,
+ "untied_lm_head": true,
+ "rules": [
+  {
+   "token_id": 2028,
+   "token": " model",
+   "mode": "replace",
+   "factor": 0.5,
+   "replacement_id": 5385,
+   "replacement": " fish"
+  }
+ ],
+ "modified_params_count": 54,
+ "warnings": [],
+ "note": "global abliteration: the token's direction is removed/redirected in every residual write (embed + o_proj/down_proj of all layers). Reproduces the abliteration-mode preview (~0.97 cosine on the logits). Pure weights: a standard safetensors checkpoint.",
+ "created_at": "2026-07-13T05:45:43+00:00"
+}

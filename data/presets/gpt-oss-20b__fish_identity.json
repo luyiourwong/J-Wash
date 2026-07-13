@@ -1,0 +1,22 @@
+{
+ "model_id": "openai/gpt-oss-20b",
+ "saved_at": "2026-07-13T19:11:30+00:00",
+ "scale": 0.8,
+ "rules": [
+  {
+   "id": 37,
+   "token_id": 162016,
+   "token": "GPT",
+   "mode": "replace",
+   "factor": 1.3,
+   "replacement_id": 29277,
+   "replacement": "fish",
+   "layers": [
+    16,
+    18,
+    20
+   ],
+   "enabled": true
+  }
+ ]
+}
