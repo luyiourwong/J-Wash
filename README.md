@@ -19,9 +19,6 @@ ship**.
 ![J-Wash — chat with the live Jacobian lens](assets/header.png)
 <p align="center"><sub>Introducing non-expert friendly alignment!</sub></p>
 
-[Nikusui-v1](https://huggingface.co/extraltodeus/Qwen3.5-9B-Nikusui-v1) has been created as a proof of concept (and you should not run this model because it is very naughty).
-
-(but you do you boo)
 
 ---
 
