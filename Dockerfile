@@ -8,7 +8,7 @@ FROM nvidia/cuda:12.4.1-runtime-ubuntu22.04 AS base
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3.11 python3.11-dev python3-pip python3-venv \
+    python3.11 python3.11-dev python3-pip python3.11-venv \
     git curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
