@@ -150,11 +150,18 @@ stopped). Conversations are persisted (SQLite + full-text search), branchable
 from any node, and replayable offline. Export a conversation as JSON or
 Markdown, with or without lens frames. The lens view's height is draggable.
 
+#
 
 Some models think in Chinese, hovering above the tokens will show a translation using cosine similarities:
 
 <img width="223" height="261" alt="image" src="https://github.com/user-attachments/assets/ad25c7ee-81f1-4a78-8521-2e33e7aaeb40" />
 
+You can also manually pin a token:
+
+<img width="157" height="128" alt="image" src="https://github.com/user-attachments/assets/3fc8f289-7525-4c9f-a16f-bcfad4abb451" />
+
+
+#
 
 
 ### 4. Edit tokens ☢
