@@ -151,6 +151,12 @@ from any node, and replayable offline. Export a conversation as JSON or
 Markdown, with or without lens frames. The lens view's height is draggable.
 
 
+Some models think in Chinese, hovering above the tokens will show a translation using cosine similarities:
+
+<img width="223" height="261" alt="image" src="https://github.com/user-attachments/assets/ad25c7ee-81f1-4a78-8521-2e33e7aaeb40" />
+
+
+
 ### 4. Edit tokens ☢
 
 
