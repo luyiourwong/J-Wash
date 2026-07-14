@@ -11,6 +11,7 @@ services:
       - ./hf_cache:/app/hf_cache
       - ./lenses:/app/lenses
     environment:
+      - JWASH_HOST=0.0.0.0
       - HF_HOME=/app/hf_cache
       - JWASH_DATA_DIR=/app/data
       - HF_TOKEN=${HF_TOKEN:-}

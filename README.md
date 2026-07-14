@@ -90,11 +90,12 @@ Or use Docker Compose:
 docker compose up -d
 ```
 
-The container runs `python -X utf8 run.py` by default. Pass additional arguments
-(e.g. `--port`, `--data-dir`, `--hf-cache`) after the image name:
+The container binds to `0.0.0.0` by default so the UI is reachable from outside
+the container. Pass additional arguments (e.g. `--port`, `--host`) after the image
+name:
 
 ```bash
-docker run --gpus all -p 8381:8381 j-wash --port 8381 --data-dir /app/data --hf-cache /app/hf_cache
+docker run --gpus all -p 8381:8381 j-wash --port 8381 --host 0.0.0.0
 ```
 
 Set `HF_TOKEN` for gated/private models:

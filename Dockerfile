@@ -44,4 +44,4 @@ EXPOSE 8381
 
 VOLUME ["/app/data", "/app/hf_cache", "/app/lenses"]
 
-ENTRYPOINT ["python3.11", "-X", "utf8", "run.py"]
+ENTRYPOINT ["python3.11", "-X", "utf8", "run.py", "--host", "0.0.0.0"]
