@@ -46,6 +46,8 @@ Requirements:
 - Python 3.11+
 - Node.js 18+
 
+### Native
+
 ```bash
 git clone https://github.com/extraltodeus/j-wash.git
 cd j-wash
@@ -62,6 +64,50 @@ python -X utf8 run.py
 ```
 
 Then open **http://localhost:8381**.
+
+### Docker
+
+Requirements:
+- NVIDIA GPU with CUDA 12.4+ drivers
+- [Docker](https://docs.docker.com/engine/install/) with the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
+
+```bash
+# Build the image
+docker build -t j-wash .
+
+# Run (data and HF cache persist on the host)
+docker run --gpus all \
+  -p 8381:8381 \
+  -v ./data:/app/data \
+  -v ./hf_cache:/app/hf_cache \
+  -v ./lenses:/app/lenses \
+  j-wash
+```
+
+Or use Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+The container runs `python -X utf8 run.py` by default. Pass additional arguments
+(e.g. `--port`, `--data-dir`, `--hf-cache`) after the image name:
+
+```bash
+docker run --gpus all -p 8381:8381 j-wash --port 8381 --data-dir /app/data --hf-cache /app/hf_cache
+```
+
+Set `HF_TOKEN` for gated/private models:
+
+```bash
+docker run --gpus all -p 8381:8381 -e HF_TOKEN=hf_your_token j-wash
+# or with docker-compose:
+#   HF_TOKEN=hf_your_token docker compose up -d
+```
+
+> **Note**: The Docker image includes the `jacobian-lens` library and pre-builds the
+> React front-end at build time. Model weights are downloaded at runtime into the
+> mounted `hf_cache` volume (shared with the host).
 
 
 ## Running
