@@ -211,9 +211,11 @@ Gemma — the error shows up in the UI if so.)
 
 ### 6. Fit your own lens
 
-In **Fit** (model unloaded, VRAM free), fit a lens on streamed WikiText across one
-or more GPUs, with per-prompt checkpoints (stop/resume without loss) and weighted
-merging. Metadata is written to `lenses/<name>/meta.json`.
+In **Fit** (model unloaded, VRAM free), fit a lens across one or more GPUs on the
+corpus of your choice: tick any HuggingFace dataset by id (WikiText by default),
+or tick several to fit on an equal-parts mix. Per-prompt checkpoints give
+stop/resume without loss, and multi-GPU slices are merged by weighted average.
+Metadata is written to `lenses/<name>/meta.json`.
 
 ### CLI (no UI)
 

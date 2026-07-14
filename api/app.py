@@ -175,7 +175,7 @@ class FitRequest(BaseModel):
     dtype: str = "bf16"
     quant: str | None = None
     n_prompts: int = 100
-    dataset: str = fitting.DATASET_WIKITEXT  # or DATASET_HARMLESS, or "mixed"
+    datasets: list[str] = [fitting.DATASET_WIKITEXT]  # any HF ids; several = equal-parts mix
     devices: list[str] = ["cuda:0"]
     name: str | None = None
     dim_batch: int | None = None
@@ -811,7 +811,7 @@ def api_fit(req: FitRequest):
             n_prompts=req.n_prompts,
             dtype=req.dtype,
             quant=req.quant,
-            dataset=req.dataset,
+            datasets=req.datasets,
             devices=req.devices,
             name=req.name,
             dim_batch=req.dim_batch,

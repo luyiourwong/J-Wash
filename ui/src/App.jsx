@@ -195,7 +195,34 @@ export default function App() {
 
   const [fitModel, setFitModel] = useState('')
   const [fitN, setFitN] = useState(100)
-  const [fitDataset, setFitDataset] = useState('Salesforce/wikitext-103-raw-v1')
+  // fit corpus library: tick one or several; several = mixed in equal parts.
+  // persisted so the user's added datasets survive a refresh.
+  const [fitDatasets, setFitDatasets] = useState(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem('jlens_fit_datasets') || 'null')
+      const restored = Array.isArray(saved)
+        ? saved.filter((d) => d && d.id).map((d) => ({ id: String(d.id), on: !!d.on }))
+        : []
+      if (restored.length) return restored
+    } catch { /* ignore corrupt storage */ }
+    return [
+      { id: 'Salesforce/wikitext-103-raw-v1', on: true },
+      { id: 'heretic-org/Semantic-Harmless', on: false },
+    ]
+  })
+  useEffect(() => {
+    localStorage.setItem('jlens_fit_datasets', JSON.stringify(fitDatasets))
+  }, [fitDatasets])
+  const [fitDatasetInput, setFitDatasetInput] = useState('')
+  const addFitDataset = () => {
+    const id = fitDatasetInput.trim()
+    if (!id) return
+    setFitDatasets((prev) =>
+      prev.some((d) => d.id === id)
+        ? prev.map((d) => (d.id === id ? { ...d, on: true } : d))
+        : [...prev, { id, on: true }])
+    setFitDatasetInput('')
+  }
   const [fitQuant, setFitQuant] = useState('')
   const [fitDevices, setFitDevices] = useState([])
   const [fitDimBatch, setFitDimBatch] = useState('')
@@ -1287,15 +1314,27 @@ export default function App() {
               <div className="row"><label>name</label>
                 <input type="text" placeholder="(auto: model_nN)" value={fitName} onChange={(e) => setFitName(e.target.value)} />
               </div>
-              <div className="row"><label title="number of corpus prompts (existing lenses were made with n=100 unless marked _nNNN)">prompts</label>
+              <div className="row"><label title="number of training sequences the fit iterates over — what you set is exactly what runs (existing lenses were made with n=100 unless marked _nNNN)">sequences</label>
                 <input type="number" min="4" step="1" value={fitN} onChange={(e) => setFitN(e.target.value)} />
               </div>
-              <div className="row"><label title="fit corpus. mixed = both datasets in equal parts (rounded to the nearest prompt), shuffled">dataset</label>
-                <select value={fitDataset} onChange={(e) => setFitDataset(e.target.value)}>
-                  <option value="Salesforce/wikitext-103-raw-v1">Salesforce/wikitext-103-raw-v1</option>
-                  <option value="heretic-org/Semantic-Harmless">heretic-org/Semantic-Harmless</option>
-                  <option value="mixed">mixed (50/50)</option>
-                </select>
+              <div className="row"><label title="fit corpus. Tick one or several HuggingFace datasets; several ticked = mixed in equal parts (rounded to the nearest sequence), shuffled">datasets</label>
+                <span style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1 }}>
+                  {fitDatasets.map((d, i) => (
+                    <label key={d.id} style={{ width: 'auto', display: 'flex', alignItems: 'center', gap: 6 }} title={d.id}>
+                      <input type="checkbox" checked={d.on}
+                        onChange={(e) => setFitDatasets(fitDatasets.map((x, j) => j === i ? { ...x, on: e.target.checked } : x))} />
+                      <span style={{ flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{d.id}</span>
+                      <button className="linkbtn" title="remove from the list (does not delete anything on disk)"
+                        onClick={() => setFitDatasets(fitDatasets.filter((_, j) => j !== i))}>✕</button>
+                    </label>
+                  ))}
+                  <span style={{ display: 'flex', gap: 6 }}>
+                    <input type="text" placeholder="org/dataset (HuggingFace id)" value={fitDatasetInput}
+                      onChange={(e) => setFitDatasetInput(e.target.value)}
+                      onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); addFitDataset() } }} />
+                    <button onClick={addFitDataset} title="add this dataset to the list">+</button>
+                  </span>
+                </span>
               </div>
               <div className="row"><label>quant</label>
                 <select value={fitQuant} onChange={(e) => setFitQuant(e.target.value)} disabled={!!fitContinue}>
@@ -1347,7 +1386,7 @@ export default function App() {
               )}
               <button
                 className="primary"
-                disabled={(!fitModel && !fitContinue) || !fitDevices.length || !!loadedId || !!busy}
+                disabled={(!fitModel && !fitContinue) || !fitDevices.length || !fitDatasets.some((d) => d.on) || !!loadedId || !!busy}
                 onClick={async () => {
                   try {
                     const layers = []
@@ -1361,7 +1400,7 @@ export default function App() {
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({
                         model_id: fitModel, n_prompts: +fitN, quant: fitQuant || null,
-                        dataset: fitDataset,
+                        datasets: fitDatasets.filter((d) => d.on).map((d) => d.id),
                         name: fitName.trim() || null, devices: fitDevices,
                         dim_batch: fitDimBatch ? +fitDimBatch : null,
                         max_seq_len: +fitMaxSeq,
