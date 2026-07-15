@@ -335,7 +335,7 @@ This is a manual edition tool.
 
 I see it more as a way to get a custom personnality, like a hand-made finetune.
 
-You will need intuition and testing to check if your edits are not making the model dumber. It requires some dedication. You can do fine surgery or a hack job, this is up to you.
+You will need intuition and testing to check if your edits are not making the model dumber. It requires some time and dedication. You can do fine surgery or a hack job, this is up to you.
 
 If you are looking for a clean abliteration method with for aim to remove refusals I recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
 
