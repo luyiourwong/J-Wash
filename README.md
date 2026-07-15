@@ -276,6 +276,7 @@ hf_cache/ only if you run with --hf-cache ./hf_cache (git-ignored)
 - Loading `.gguf` files directly as models is **not** supported — J-Wash loads
   transformers/safetensors models only.
 - Interventions and lens readouts are unavailable on quantized (int8/nf4) weights.
+- Gemma models having a slightly different attention are not as easy to modify.
 
 ## Credits
 
