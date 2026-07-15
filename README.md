@@ -278,6 +278,20 @@ hf_cache/ only if you run with --hf-cache ./hf_cache (git-ignored)
 - Interventions and lens readouts are unavailable on quantized (int8/nf4) weights.
 - Gemma models having a slightly different attention are not as easy to modify.
 
+## Final words
+
+This is a manual edition tool.
+
+I see it more as a way to get a custom personnality, like a hand-made finetune.
+
+You will need intuition and testing to check if your edits are not making the model dumber. It requires some dedication and can not be perfect.
+
+Still, I think it's super fun.
+
+Therefore if you were looking for a clean abliteration with for aim to just remove refusal I would clearly recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
+
+
+
 ## Credits
 
 - **Jacobian lens** — Anthropic's [`jacobian-lens`](https://github.com/anthropics/jacobian-lens),
