@@ -261,6 +261,10 @@ token). Add rules:
 - **replace** - rewrite token A's component onto token B's direction
   (e.g. ` model` → ` fish`).
 
+The sensitivity of the automatic selection can be modified in the options tab.
+
+The automatic selection relates to the highest levels of activation and does not necessarily targets the best layers to modify.
+
 Each rule targets a range of layers; there's a global multiplier and grouped
 editing. A mode toggle switches between:
 
