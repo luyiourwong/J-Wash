@@ -165,6 +165,12 @@ development with hot-reload, run `npm run dev` in `ui/` (port 5173, proxied to 8
 The sidebar is organized into tabs: **Chat**, **Model**, **Lens**, **Fit**, and
 **Options** (defaults, paths, ignored tokens).
 
+### 0. General advice
+
+I made this to be overall intuitive (I'm open to criticism about that ^^).
+
+After loading a model and a lens, simply try to see what you can understand by playing around.
+
 ### 1. Load a model
 
 In **Model**, pick a cached / local model or type an `org/repo` in **Download**
