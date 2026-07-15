@@ -1,0 +1,24 @@
+services:
+  j-wash:
+    build: .
+    image: j-wash
+    container_name: j-wash
+    restart: unless-stopped
+    ports:
+      - "8381:8381"
+    volumes:
+      - ./data:/app/data
+      - ./hf_cache:/app/hf_cache
+      - ./lenses:/app/lenses
+    environment:
+      - JWASH_HOST=0.0.0.0
+      - HF_HOME=/app/hf_cache
+      - JWASH_DATA_DIR=/app/data
+      - HF_TOKEN=${HF_TOKEN:-}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

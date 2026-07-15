@@ -19,6 +19,10 @@ def main():
              "servers side by side.",
     )
     parser.add_argument(
+        "--host", default=None,
+        help="Bind address (default: 127.0.0.1). Use 0.0.0.0 for Docker.",
+    )
+    parser.add_argument(
         "--port", type=int, default=None,
         help="HTTP port (default: 8381). Use a distinct port per instance.",
     )
@@ -49,7 +53,8 @@ def main():
 
     import uvicorn
 
-    uvicorn.run("api.app:app", host=config.HOST, port=args.port or config.PORT, log_level="info")
+    host = args.host or os.environ.get("JWASH_HOST") or config.HOST
+    uvicorn.run("api.app:app", host=host, port=args.port or config.PORT, log_level="info")
 
 
 if __name__ == "__main__":
