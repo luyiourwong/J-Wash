@@ -11,16 +11,15 @@ of any Hugging Face LLM, **and export a usable checkpoint**.
 
 You chat with a model while a live **Jacobian lens**
 shows what each layer is "reading," pin and inspect concepts, then **wash** the
-model's identity or behavior with a few token-level rules — turn *"I am a large
-language model"* into *"I am a large language fish"* — and **export the result as a
+model's identity or behavior with a few token-level rules - turn *"I am a large
+language model"* into *"I am a large language fish"* - and **export the result as a
 standalone model** (full checkpoint, modified layers, or LoRA): standard
 safetensors weights that load anywhere `transformers` models do.
 
 The editing preview runs live in the chat, and the exported checkpoint reproduces
-it faithfully — the whole point of the project is that **what you see is what you
-ship**.
+it faithfully. **What you see is what you get**.
 
-![J-Wash — chat with the live Jacobian lens](assets/header.png)
+![J-Wash - chat with the live Jacobian lens](assets/header.png)
 <p align="center"><sub>Introducing non-expert friendly alignment!</sub></p>
 
 
@@ -147,7 +146,7 @@ python -X utf8 run.py
 Then open **http://localhost:8381**. (`-X utf8` matters on Windows.)
 
 By default, models download into your **shared Hugging Face cache**
-(`~/.cache/huggingface`, or `$HF_HOME` if set) — the same cache other HF tools use.
+(`~/.cache/huggingface`, or `$HF_HOME` if set) - the same cache other HF tools use.
 To keep everything **isolated in a project-local cache** instead, pass a path:
 
 ```bash
@@ -155,7 +154,7 @@ python -X utf8 run.py --hf-cache ./hf_cache
 ```
 
 Several instances can run side by side: give each its own `--port` (default
-8381) and `--data-dir` (default `./data` — history, presets, edits). The CLI
+8381) and `--data-dir` (default `./data` - history, presets, edits). The CLI
 targets a non-default instance with `scripts/jlab.py --base http://127.0.0.1:<port>`.
 
 The React front-end is served by the backend from `ui/dist`; after changing any UI
@@ -173,18 +172,18 @@ In **Model**, pick a cached / local model or type an `org/repo` in **Download**
 (e.g. `Qwen/Qwen3-4B`) and hit ↓. Choose dtype / quant / device, then **Load**.
 Local folders (a directory with `config.json` + safetensors) and the HF cache are
 listed automatically; **Browse** adds any model folder on disk to the list
-(nothing is copied — the blue button forgets the entry, the red trash deletes
+(nothing is copied - the blue button forgets the entry, the red trash deletes
 actual files). fp32 models are auto-converted to bf16 to halve disk usage.
 
 ![models tab](assets/models_tab.png)
 
 ### 2. Load a Jacobian lens
 
-In **Lens**, J-Wash lists compatible lenses for the loaded model — local ones you
+In **Lens**, J-Wash lists compatible lenses for the loaded model - local ones you
 fitted plus matching lenses on the Neuronpedia Hub. For a **finetune**, the lens
 of its *base model* is offered too (read from the model card, or guessed from the
 name); every other Hub lens stays reachable in a collapsed section for
-architecture-compatible cross-loading. Click to load (downloading if needed) —
+architecture-compatible cross-loading. Click to load (downloading if needed) -
 you can even pick a lens **while the model is still loading**, it chain-loads
 when ready. No lens? Fit one in the **Fit** tab (see below). Manual loading by
 repo / file / local path is available at the bottom of the tab.
@@ -198,7 +197,7 @@ Chat as usual. Below the conversation, the lens view shows, for the prompt and e
 generated token:
 
 - **Frequencies** (default): tokens the layers "read," aggregated by how often they
-  appear — size ∝ frequency. Click a token to **pin** it (rank curves + a rank
+  appear - size ∝ frequency. Click a token to **pin** it (rank curves + a rank
   heatmap per layer); right-click to hide noise.
 
 
@@ -218,7 +217,7 @@ Selecting a token will display related activations in all layers:
 ![Activations](assets/activations.png)
 
 Leading/trailing spaces are rendered with `˽` (so `˽Euro` ≠ `Euro`). Replies
-render as markdown (toggleable), can be **edited in place** (✎ — later turns use
+render as markdown (toggleable), can be **edited in place** (✎ - later turns use
 the edited text) and **continued** (the model picks up exactly where it
 stopped). Conversations are persisted (SQLite + full-text search), branchable
 from any node, and replayable offline. Export a conversation as JSON or
@@ -248,17 +247,17 @@ token). Add rules:
 
 ![Edit2](assets/edit2.png)
 
-- **multiply ×f** — `×0` removes a token's direction, `×0.5` attenuates, `×2`
+- **multiply ×f** - `×0` removes a token's direction, `×0.5` attenuates, `×2`
   amplifies;
-- **replace** — rewrite token A's component onto token B's direction
+- **replace** - rewrite token A's component onto token B's direction
   (e.g. ` model` → ` fish`).
 
 Each rule targets a range of layers; there's a global multiplier and grouped
 editing. A mode toggle switches between:
 
-- **Per-layer steering** (default) — the most expressive way to *explore*, but it
+- **Per-layer steering** (default) - the most expressive way to *explore*, but it
   does not export faithfully.
-- **Read projection** (pure-weights) — a change of basis of the downstream reads so
+- **Read projection** (pure-weights) - a change of basis of the downstream reads so
   the **live preview matches the exported checkpoint exactly**. Use this to save a model and preview the result.
 
 
@@ -270,7 +269,7 @@ editing. A mode toggle switches between:
 > **Architecture note**: models whose layers normalize their *writes* into the
 > residual stream (Gemma 2/3 style, `pre/post_feedforward_layernorm`) can't take
 > the read projection. On those, the toggle offers **Global projection** (W_U
-> abliteration) instead — still pure weights, faithful for full removals and
+> abliteration) instead - still pure weights, faithful for full removals and
 > replacements (a rule's layer range is ignored: the projection is global).
 
 ### 5. Export the edit
@@ -278,16 +277,16 @@ editing. A mode toggle switches between:
 Save a set of rules as a **preset** and re-apply it in one click. Export an edit
 (`data/edits/<name>/`) as:
 
-- **full checkpoint** — reloadable as-is in plain `transformers`;
+- **full checkpoint** - reloadable as-is in plain `transformers`;
 - **modified layers** (safetensors);
-- **LoRA** (PEFT) — the exact low-rank diff between the edited weights and the
+- **LoRA** (PEFT) - the exact low-rank diff between the edited weights and the
   originals (the edit is low-rank by construction, so nothing is approximated).
 
 
 ![export](assets/export.png)
 
 
-Exports are standard safetensors weights — everything that follows from that
+Exports are standard safetensors weights - everything that follows from that
 (quantizing, converting to other runtimes' formats, publishing on the Hub)
 works exactly as it would for any other model.
 
@@ -296,9 +295,9 @@ folder (one that has `convert_hf_to_gguf.py`; `llama-quantize` too for quantized
 types), a **GGUF** entry appears in the export formats: J-Wash bakes the full
 checkpoint into a local cache, converts it, and quantizes if asked
 (`q4_k_m`, `q8_0`, …). The cached checkpoint is reused when exporting several
-GGUF types — a *clean cache* button reclaims the space. (llama.cpp's converter
+GGUF types - a *clean cache* button reclaims the space. (llama.cpp's converter
 may need extra pip packages for some tokenizers, e.g. `sentencepiece` for
-Gemma — the error shows up in the UI if so.)
+Gemma - the error shows up in the UI if so.)
 
 ### 6. Fit your own lens
 
@@ -338,7 +337,7 @@ core/     model & lens managers, fitting, registry, SQLite store,
 api/      FastAPI app (REST + WebSocket)
 ui/       React + Vite front-end
 scripts/  jlab.py CLI, fit worker, smoke tests, accuracy checks
-vendor/   external clones (jacobian-lens) — git-ignored, see Installation
+vendor/   external clones (jacobian-lens) - git-ignored, see Installation
 lenses/   local fitted lenses + metadata          (git-ignored, regenerated)
 data/     SQLite DB, frames, presets, edits, masks (git-ignored)
 hf_cache/ only if you run with --hf-cache ./hf_cache (git-ignored)
@@ -351,7 +350,7 @@ hf_cache/ only if you run with --hf-cache ./hf_cache (git-ignored)
   e.g. a project-local `./hf_cache`. Fitted lenses (`lenses/`), runtime data
   (`data/`), and exported edits live under the project and are git-ignored.
 - **Gated / private models** need a valid `HF_TOKEN` in your environment.
-- Loading `.gguf` files directly as models is **not** supported — J-Wash loads
+- Loading `.gguf` files directly as models is **not** supported - J-Wash loads
   transformers/safetensors models only.
 - Interventions and lens readouts are unavailable on quantized (int8/nf4) weights.
 - Gemma models having a slightly different attention are not as easy to modify.
@@ -371,10 +370,10 @@ Nobody is stopping you from using J-Wash on an already abliterated model! :D
 
 ## Credits
 
-- **Jacobian lens** — Anthropic's [`jacobian-lens`](https://github.com/anthropics/jacobian-lens),
+- **Jacobian lens** - Anthropic's [`jacobian-lens`](https://github.com/anthropics/jacobian-lens),
   the interpretability method and reference implementation J-Wash is built on.
-- **Pre-fitted lenses** — [Neuronpedia](https://huggingface.co/neuronpedia/jacobian-lens).
+- **Pre-fitted lenses** - [Neuronpedia](https://huggingface.co/neuronpedia/jacobian-lens).
 
 ## License
 
-Apache License 2.0 — see [LICENSE](LICENSE).
+Apache License 2.0 - see [LICENSE](LICENSE).
