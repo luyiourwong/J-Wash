@@ -335,12 +335,11 @@ This is a manual edition tool.
 
 I see it more as a way to get a custom personnality, like a hand-made finetune.
 
-You will need intuition and testing to check if your edits are not making the model dumber. It requires some dedication and can not be perfect.
+You will need intuition and testing to check if your edits are not making the model dumber. It requires some dedication. You can do fine surgery or a hack job, this is up to you.
 
-Still, I think it's super fun.
+If you are looking for a clean abliteration method with for aim to remove refusals I recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
 
-Therefore if you were looking for a clean abliteration with for aim to just remove refusal I would clearly recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
-
+Nobody is stopping you from using J-Wash on an already abliterated model! :D
 
 
 ## Credits
