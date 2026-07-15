@@ -59,7 +59,7 @@ un-embedding. On top of it, J-Wash adds:
 - an interactive **chat UI** with the lens rendered live (heatmaps, token clouds,
   per-layer rank curves);
 - a **token editor** that turns lens directions into persistent, composable edits;
-- and — the core feature — an **export pipeline** that bakes those edits into a
+- and, the core feature, an **export pipeline** that bakes those edits into a
   pure-weights checkpoint (`full` / `layers` / `lora`), so the edited model runs
   with no J-Wash code in the loop.
 
