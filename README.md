@@ -1,5 +1,7 @@
 # J-Wash
 
+## Introduction
+
 **Reshape a model's identity and behavior by editing token directions, then bake
 those edits into a real checkpoint you can run anywhere. No training, no dataset,
 no fine-tuning.**
@@ -21,6 +23,8 @@ ship**.
 
 
 ---
+
+## Table of Contents
 
 - [What it's built on](#what-its-built-on)
 - [Installation](#installation)
