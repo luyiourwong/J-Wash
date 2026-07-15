@@ -6,8 +6,10 @@
 those edits into a real checkpoint you can run anywhere. No training, no dataset,
 no fine-tuning.**
 
-J-Wash is a local studio (FastAPI + React) for exploring and editing the *J-space*
-of any Hugging Face decoder LLM. You chat with a model while a live **Jacobian lens**
+J-Wash is a local studio (FastAPI + React) for exploring, editing the [J-space](https://www.anthropic.com/research/global-workspace)
+of any Hugging Face LLM, **and export a usable checkpoint**.
+
+You chat with a model while a live **Jacobian lens**
 shows what each layer is "reading," pin and inspect concepts, then **wash** the
 model's identity or behavior with a few token-level rules — turn *"I am a large
 language model"* into *"I am a large language fish"* — and **export the result as a
