@@ -11,8 +11,8 @@ of any Hugging Face LLM, **and export a usable checkpoint**.
 
 You chat with a model while a live **Jacobian lens**
 shows what each layer is "reading," pin and inspect concepts, then **wash** the
-model's identity or behavior with a few token-level rules - turn *"I am a large
-language model"* into *"I am a large language fish"* - and **export the result as a
+model's identity or behavior with a few token-level rules turn *"I am a large
+language model"* into *"I am a large language fish"* and **export the result as a
 standalone model** (full checkpoint, modified layers, or LoRA): standard
 safetensors weights that load anywhere `transformers` models do.
 
