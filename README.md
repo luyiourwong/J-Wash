@@ -357,15 +357,15 @@ hf_cache/ only if you run with --hf-cache ./hf_cache (git-ignored)
 
 ## Final words
 
-This is a manual edition tool.
+This is a manual edition tool which I see as a way to get a custom personnality, like a hand-made finetune, more than a manual abliterator.
 
-I see it more as a way to get a custom personnality, like a hand-made finetune.
+You will need intuition and testing to check if your edits are not making the model dumber. It requires some time and dedication.
 
-You will need intuition and testing to check if your edits are not making the model dumber. It requires some time and dedication. You can do fine surgery or a hack job, this is up to you.
+You can do fine surgery or a hack job, this is up to you.
 
-If you are looking for a clean abliteration method with for aim to remove refusals I recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
+If you are looking for a clean abliteration method and aiming to remove refusals I recommand [p-e-w's heretic](https://github.com/p-e-w/heretic) project.
 
-Nobody is stopping you from using J-Wash on an already abliterated model! :D
+Nothing is stopping you from using J-Wash on an already abliterated model! :D
 
 
 ## Credits
