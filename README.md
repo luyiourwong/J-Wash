@@ -234,7 +234,11 @@ editing. A mode toggle switches between:
 - **Read projection** (pure-weights) — a change of basis of the downstream reads so
   the **live preview matches the exported checkpoint exactly**. Use this to save a model and preview the result.
 
+
+#### Read projection is what you want to use if your intent is to export the result.
+
 ![projection](assets/projection.png)
+
 
 > **Architecture note**: models whose layers normalize their *writes* into the
 > residual stream (Gemma 2/3 style, `pre/post_feedforward_layernorm`) can't take
