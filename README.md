@@ -188,9 +188,7 @@ In **Lens**, J-Wash lists compatible lenses for the loaded model - local ones yo
 fitted plus matching lenses on the Neuronpedia Hub. For a **finetune**, the lens
 of its *base model* is offered too (read from the model card, or guessed from the
 name); every other Hub lens stays reachable in a collapsed section for
-architecture-compatible cross-loading. Click to load (downloading if needed) -
-you can even pick a lens **while the model is still loading**, it chain-loads
-when ready. No lens? Fit one in the **Fit** tab (see below). Manual loading by
+architecture-compatible cross-loading. Click to load (downloading if needed). No lens? Fit one in the **Fit** tab (see below). Manual loading by
 repo / file / local path is available at the bottom of the tab.
 
 ![models tab](assets/lens.png)
